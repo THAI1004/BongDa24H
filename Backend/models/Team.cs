@@ -1,0 +1,21 @@
+﻿using System;
+using System.Collections.Generic;
+
+namespace Backend.Models;
+
+public partial class Team
+{
+    public int Id { get; set; }
+
+    public string TeamName { get; set; } = null!;
+
+    public int ManagerId { get; set; }
+
+    public int? TotalMatches { get; set; }
+
+    public int? Wins { get; set; }
+
+    public string? SkillLevel { get; set; }
+
+    public virtual User Manager { get; set; } = null!;
+}
