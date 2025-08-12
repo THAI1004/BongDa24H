@@ -15,7 +15,7 @@ public partial class MatchRequest
 
     public string TimeSlot { get; set; } = null!;
 
-    public string? SkillLevel { get; set; }
+    public int? SkillLevel { get; set; }
 
     public virtual User Creator { get; set; } = null!;
 

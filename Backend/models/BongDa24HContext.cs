@@ -40,11 +40,6 @@ public partial class BongDa24HContext : DbContext
     public virtual DbSet<Team> Teams { get; set; }
 
     public virtual DbSet<User> Users { get; set; }
-
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Server=TRANG;Database=BongDa24H;User Id=sa;Password=1;TrustServerCertificate=True;");
-
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Booking>(entity =>
@@ -56,9 +51,6 @@ public partial class BongDa24HContext : DbContext
             entity.HasIndex(e => e.UserId, "IX_Bookings_UserId");
 
             entity.Property(e => e.DepositAmount).HasDefaultValue(0);
-            entity.Property(e => e.Status)
-                .HasMaxLength(20)
-                .HasDefaultValue("Pending");
             entity.Property(e => e.TimeSlot).HasMaxLength(50);
 
             entity.HasOne(d => d.Pitch).WithMany(p => p.Bookings)
@@ -80,7 +72,6 @@ public partial class BongDa24HContext : DbContext
 
             entity.HasIndex(e => e.PitchId, "IX_MatchRequests_PitchId");
 
-            entity.Property(e => e.SkillLevel).HasMaxLength(50);
             entity.Property(e => e.TimeSlot).HasMaxLength(50);
 
             entity.HasOne(d => d.Creator).WithMany(p => p.MatchRequests)
@@ -102,9 +93,6 @@ public partial class BongDa24HContext : DbContext
             entity.HasIndex(e => e.ResponderId, "IX_MatchResponses_ResponderId");
 
             entity.Property(e => e.Content).HasMaxLength(255);
-            entity.Property(e => e.Status)
-                .HasMaxLength(20)
-                .HasDefaultValue("Pending");
 
             entity.HasOne(d => d.Request).WithMany(p => p.MatchResponses)
                 .HasForeignKey(d => d.RequestId)
@@ -154,11 +142,11 @@ public partial class BongDa24HContext : DbContext
 
             entity.HasIndex(e => e.BookingId, "IX_Payments_BookingId");
 
-            entity.Property(e => e.Method).HasMaxLength(50);
+            entity.Property(e => e.Method).HasDefaultValue(0);
             entity.Property(e => e.PaymentTime)
                 .HasDefaultValueSql("(getdate())")
                 .HasColumnType("datetime");
-            entity.Property(e => e.Type).HasMaxLength(20);
+            entity.Property(e => e.Type).HasDefaultValue(0);
 
             entity.HasOne(d => d.Booking).WithMany(p => p.Payments)
                 .HasForeignKey(d => d.BookingId)
@@ -174,7 +162,7 @@ public partial class BongDa24HContext : DbContext
 
             entity.Property(e => e.ImageUrl).HasMaxLength(255);
             entity.Property(e => e.PitchName).HasMaxLength(100);
-            entity.Property(e => e.PitchType).HasMaxLength(50);
+            entity.Property(e => e.PitchType).HasDefaultValue(0);
 
             entity.HasOne(d => d.Cluster).WithMany(p => p.Pitches)
                 .HasForeignKey(d => d.ClusterId)
@@ -236,9 +224,7 @@ public partial class BongDa24HContext : DbContext
             entity.Property(e => e.ReportDate)
                 .HasDefaultValueSql("(getdate())")
                 .HasColumnType("datetime");
-            entity.Property(e => e.Status)
-                .HasMaxLength(20)
-                .HasDefaultValue("Pending");
+            entity.Property(e => e.Status).HasDefaultValue(0);
             entity.Property(e => e.TargetType).HasMaxLength(50);
 
             entity.HasOne(d => d.Reporter).WithMany(p => p.Reports)
@@ -269,7 +255,6 @@ public partial class BongDa24HContext : DbContext
 
             entity.HasIndex(e => e.ManagerId, "IX_Teams_ManagerId");
 
-            entity.Property(e => e.SkillLevel).HasMaxLength(50);
             entity.Property(e => e.TeamName).HasMaxLength(100);
             entity.Property(e => e.TotalMatches).HasDefaultValue(0);
             entity.Property(e => e.Wins).HasDefaultValue(0);
@@ -291,9 +276,7 @@ public partial class BongDa24HContext : DbContext
             entity.Property(e => e.FullName).HasMaxLength(100);
             entity.Property(e => e.PasswordHash).HasMaxLength(255);
             entity.Property(e => e.PhoneNumber).HasMaxLength(20);
-            entity.Property(e => e.Role)
-                .HasMaxLength(20)
-                .HasDefaultValue("User");
+            entity.Property(e => e.Role).HasDefaultValue(0);
         });
 
         OnModelCreatingPartial(modelBuilder);

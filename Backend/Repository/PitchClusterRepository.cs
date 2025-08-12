@@ -21,11 +21,30 @@ public class PitchClusterRepository : IPitchClusterRepository
             .Select(pc => pc.ToPitchClusterDto())
             .ToListAsync();
     }
-    public async Task<PitchClusterDto> GetPitchClusterById(int id)
+    public async Task<PitchCluster> GetPitchClusterById(int id)
     {
-        return await _context.PitchClusters
-           .Where(pc => pc.Id == id)
-           .Select(pc => pc.ToPitchClusterDto())
-           .FirstOrDefaultAsync();
+        var pc = await _context.PitchClusters
+           .FirstOrDefaultAsync(pc => pc.Id == id);
+        return pc;
+    }
+    public async Task<PitchCluster> Create(PitchCluster pitchCluster)
+    {
+        _context.PitchClusters.Add(pitchCluster);
+        await _context.SaveChangesAsync();
+        return pitchCluster;
+    }
+    public async Task<PitchCluster> Update(PitchCluster pitchCluster)
+    {
+        _context.PitchClusters.Update(pitchCluster);
+        await _context.SaveChangesAsync();
+        return pitchCluster;
+    }
+    public async Task<bool> Delete(PitchCluster pitchCluster)
+
+    {
+        _context.Pitches.RemoveRange(pitchCluster.Pitches);
+        _context.PitchClusters.Remove(pitchCluster);
+        await _context.SaveChangesAsync();
+        return true;
     }
 }

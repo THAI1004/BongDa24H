@@ -15,11 +15,11 @@ public partial class Booking
 
     public string TimeSlot { get; set; } = null!;
 
-    public string Status { get; set; } = null!;
-
     public int? DepositAmount { get; set; }
 
     public bool IsDeposited { get; set; }
+
+    public int? Status { get; set; }
 
     public virtual ICollection<Message> Messages { get; set; } = new List<Message>();
 

@@ -13,7 +13,7 @@ public partial class MatchResponse
 
     public string? Content { get; set; }
 
-    public string Status { get; set; } = null!;
+    public int? Status { get; set; }
 
     public virtual MatchRequest Request { get; set; } = null!;
 

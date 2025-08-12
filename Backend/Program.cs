@@ -6,6 +6,12 @@ using Backend.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddScoped<IPitchClusterRepository, PitchClusterRepository>();
+builder.Services.AddScoped<IPitchRepository, PitchRepository>();
+builder.Services.AddScoped<IPricingRepository, PricingRepository>();
+builder.Services.AddScoped<IBookingRepository, BookingRepository>();
+builder.Services.AddScoped<IMatchRequestRepository, MatchRequestRepository>();
+builder.Services.AddScoped<IMatchResponseRepository, MatchResponseRepository>();
+builder.Services.AddScoped<ITeamRepository, TeamRepository>();
 builder.Services.AddControllers();
 // Add services to the container.
 builder.Services.AddEndpointsApiExplorer();

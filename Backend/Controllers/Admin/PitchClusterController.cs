@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Backend.Mappers;
 using Backend.Dtos.PitchCluster;
 using Backend.Interfaces;
+using System.Threading.Tasks;
 namespace Backend.Controllers.Admin;
 
 [Route("api/pitchcluster")]
@@ -56,11 +57,10 @@ public class PitchClusterController : ControllerBase
         });
     }
     [HttpPost]
-    public IActionResult Create([FromBody] CreatePitchClusterDto pitchClusterDto)
+    public async Task<IActionResult> Create([FromBody] CreatePitchClusterDto pitchClusterDto)
     {
         var pitchCluster = pitchClusterDto.ToPitchCluster();
-        _context.PitchClusters.Add(pitchCluster);
-        _context.SaveChanges();
+        await _pitchClusterRepository.Create(pitchCluster);
 
         if (pitchCluster == null)
         {
@@ -78,7 +78,7 @@ public class PitchClusterController : ControllerBase
         });
     }
     [HttpPut("{id}")]
-    public IActionResult Update([FromRoute] int id, [FromBody] CreatePitchClusterDto pitchClusterDto)
+    public async Task<IActionResult> Update([FromRoute] int id, [FromBody] CreatePitchClusterDto pitchClusterDto)
     {
         var pitchCluster = _context.PitchClusters.FirstOrDefault(p => p.Id == id);
         if (pitchCluster == null)
@@ -94,8 +94,7 @@ public class PitchClusterController : ControllerBase
         pitchCluster.Longitude = pitchClusterDto.Longitude;
         pitchCluster.Latitude = pitchClusterDto.Latitude;
         pitchCluster.OwnerId = pitchClusterDto.OwnerId;
-        _context.Update(pitchCluster);
-        _context.SaveChanges();
+        await _pitchClusterRepository.Update(pitchCluster);
         return Ok(new
         {
             data = pitchCluster,
@@ -104,11 +103,9 @@ public class PitchClusterController : ControllerBase
         });
     }
     [HttpDelete("{id}")]
-    public IActionResult Delete([FromRoute] int id)
+    public async Task<IActionResult> Delete([FromRoute] int id)
     {
-        var pitchCluster = _context.PitchClusters
-         .Include(p => p.Pitches)
-        .FirstOrDefault(p => p.Id == id);
+        var pitchCluster = await _pitchClusterRepository.GetPitchClusterById(id);
         if (pitchCluster == null)
         {
             return NotFound(new
@@ -117,9 +114,7 @@ public class PitchClusterController : ControllerBase
                 success = false
             });
         }
-        _context.Pitches.RemoveRange(pitchCluster.Pitches);
-        _context.PitchClusters.Remove(pitchCluster);
-        _context.SaveChanges();
+        await _pitchClusterRepository.Delete(pitchCluster);
         return Ok(new
         {
             message = "Xoá cụm sân thành công",
