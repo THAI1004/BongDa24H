@@ -1,5 +1,6 @@
 using Backend.Interfaces;
 using Backend.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Backend.Controllers.Admin;
@@ -15,6 +16,7 @@ public class PricingController : ControllerBase
         _pricingRepository = pricingRepository;
         _context = context;
     }
+    [Authorize]
     [HttpGet]
     public async Task<IActionResult> GetPrice(int PitchId)
     {
@@ -41,11 +43,16 @@ public class PricingController : ControllerBase
             return StatusCode(500, $"Internal server error: {ex.Message}");
         }
     }
+    [Authorize]
     [HttpPost]
     public async Task<IActionResult> CreatePrice([FromBody] PricingRule pricingRule)
     {
         try
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
             if (pricingRule == null)
             {
                 return BadRequest(new
@@ -68,6 +75,7 @@ public class PricingController : ControllerBase
             return StatusCode(500, $"Internal server error: {ex.Message}");
         }
     }
+    [Authorize]
     [HttpPut]
     public async Task<IActionResult> UpdatePrice([FromBody] PricingRule pricingRule)
     {
@@ -103,6 +111,7 @@ public class PricingController : ControllerBase
             return StatusCode(500, $"Internal server error: {ex.Message}");
         }
     }
+    [Authorize]
     [HttpDelete("{pricingId}")]
     public async Task<IActionResult> DeletePricing(int pricingId)
     {

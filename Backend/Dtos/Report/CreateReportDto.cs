@@ -1,7 +1,11 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace Backend.Dtos.Report;
 
 public class CreateReportDto
 {
+    [Required(ErrorMessage = "Yêu cầu cung cấp id người báo cáo.")]
+
     public int ReporterId { get; set; }
 
     public int TargetId { get; set; }

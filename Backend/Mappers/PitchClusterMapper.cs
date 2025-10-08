@@ -14,6 +14,8 @@ public static class PitchClusterMapper
             Longitude = pitchCluster.Longitude,
             Latitude = pitchCluster.Latitude,
             OwnerId = pitchCluster.OwnerId
+            ,
+            Image = pitchCluster.Image
         };
     }
     public static PitchCluster ToPitchCluster(this CreatePitchClusterDto pitchCluster)
@@ -25,6 +27,8 @@ public static class PitchClusterMapper
             Longitude = pitchCluster.Longitude,
             Latitude = pitchCluster.Latitude,
             OwnerId = pitchCluster.OwnerId
+            ,
+            Image = pitchCluster.Image
         };
     }
 }

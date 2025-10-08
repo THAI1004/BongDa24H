@@ -35,14 +35,14 @@ public class PitchRepository : IPitchRepository
 
     public async Task<List<PitchDto>> GetAllPitchesAsync()
     {
-        return await _context.Pitches.
+        return await _context.Pitches.Include(m => m.Cluster).
             Select(p => p.ToPitchDto())
             .ToListAsync();
     }
 
     public async Task<Pitch> GetPitchByIdAsync(int id)
     {
-        var pitch = await _context.Pitches
+        var pitch = await _context.Pitches.Include(m => m.Cluster)
         .FirstOrDefaultAsync(p => p.Id == id);
         if (pitch == null)
         {

@@ -13,7 +13,7 @@ public class UserRepository : IUserRepository
     {
         _context = context;
     }
-    public async Task<CreateUserDto> CreateUserAsun(CreateUserDto createUserDto)
+    public async Task<CreateUserDto> CreateUserAsyn(CreateUserDto createUserDto)
     {
         _context.Users.Add(createUserDto.ToCreateUserDto());
         await _context.SaveChangesAsync();
@@ -25,15 +25,43 @@ public class UserRepository : IUserRepository
         return await _context.Users.ToListAsync();
     }
 
-    public async Task<User?> GetUserById(int Id)
+    public async Task<UpdateUserDto?> GetUserById(int Id)
     {
-        return await _context.Users.FirstOrDefaultAsync(u => u.Id == Id);
+        var user = await _context.Users.FirstOrDefaultAsync(u => u.Id == Id);
+        if (user == null) return null;
+
+        return new UpdateUserDto
+        {
+            Id = user.Id,
+            FullName = user.FullName,
+            Email = user.Email,
+            PhoneNumber = user.PhoneNumber,
+            Role = user.Role,
+            Image = user.Image
+        };
     }
 
-    public async Task<User> UpdateUserAsyn(User user)
+
+    public async Task<User> UpdateUserAsyn(UpdateUserDto updatedU)
     {
-        _context.Users.Update(user);
+        var existingUser = await _context.Users.FirstOrDefaultAsync(u => u.Id == updatedU.Id);
+        if (existingUser == null)
+            throw new Exception("User not found");
+
+        // Cập nhật các trường cần thiết
+        existingUser.FullName = updatedU.FullName;
+        existingUser.Email = updatedU.Email;
+        existingUser.PhoneNumber = updatedU.PhoneNumber;
+        existingUser.Role = updatedU.Role;
+        existingUser.AccumulatedPoints = updatedU.AccumulatedPoints;
+        existingUser.Image = updatedU.Image;
+
         await _context.SaveChangesAsync();
-        return user;
+        return existingUser;
+    }
+
+    public async Task<User?> CheckLogin(string email)
+    {
+        return await _context.Users.FirstOrDefaultAsync(u => u.Email == email);
     }
 }

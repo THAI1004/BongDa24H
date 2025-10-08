@@ -1,5 +1,6 @@
 using Backend.Dtos;
 using Backend.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Backend.Controllers.Admin;
@@ -13,6 +14,7 @@ public class TeamController : ControllerBase
     {
         _teamRepository = teamRepository;
     }
+    [Authorize]
     [HttpGet]
     public async Task<IActionResult> GetAllTeam()
     {
@@ -43,6 +45,7 @@ public class TeamController : ControllerBase
             });
         }
     }
+    [Authorize]
     [HttpPost]
     public async Task<IActionResult> CreateTeam(CreateTeamDto createTeamDto)
 
@@ -50,6 +53,10 @@ public class TeamController : ControllerBase
     {
         try
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
             var team = await _teamRepository.CreateTeamAsyn(createTeamDto);
             if (team == null)
             {
@@ -75,11 +82,16 @@ public class TeamController : ControllerBase
             });
         }
     }
+    [Authorize]
     [HttpPut("{Id}")]
     public async Task<IActionResult> UpdateTeam([FromBody] CreateTeamDto createTeamDto, [FromRoute] int Id)
     {
         try
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
             var team = await _teamRepository.GetTeamByIdAsyn(Id);
             if (team == null)
             {

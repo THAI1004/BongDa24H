@@ -18,6 +18,8 @@ public partial class User
     public int? Role { get; set; }
 
     public int? AccumulatedPoints { get; set; }
+    public string? Image { get; set; }
+
 
     public virtual ICollection<Booking> Bookings { get; set; } = new List<Booking>();
 

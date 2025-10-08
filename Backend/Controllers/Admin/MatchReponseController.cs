@@ -1,6 +1,7 @@
 using Backend.Dtos.MatchResponse;
 using Backend.Interfaces;
 using Backend.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Backend.Controllers.Admin;
@@ -16,11 +17,16 @@ public class MatchReponseController : ControllerBase
         _context = context;
         _matchResponseRepository = matchResponseRepository;
     }
+    [Authorize]
     [HttpPost]
     public async Task<IActionResult> CreateMatchResponse([FromBody] MatchResponseDto dto)
     {
         try
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
             var matchResponse = await _matchResponseRepository.CreateMatchResponseAsyn(dto);
             if (matchResponse == null)
             {
@@ -46,11 +52,16 @@ public class MatchReponseController : ControllerBase
             });
         }
     }
+    [Authorize]
     [HttpPut("{responseId}")]
     public async Task<IActionResult> UpdateStatusResponse([FromBody] MatchResponseDto dto, [FromRoute] int responseId)
     {
         try
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
             var matchResponse = await _matchResponseRepository.GetMatchResponseById(responseId);
             if (matchResponse == null)
             {

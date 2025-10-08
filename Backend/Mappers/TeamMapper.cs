@@ -13,7 +13,8 @@ public static class TeamMapper
             ManagerId = createTeamDto.ManagerId,
             TotalMatches = createTeamDto.TotalMatches,
             Wins = createTeamDto.Wins,
-            SkillLevel = createTeamDto.SkillLevel
+            SkillLevel = createTeamDto.SkillLevel,
+            Image = createTeamDto.Image
         };
     }
 }

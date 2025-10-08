@@ -11,5 +11,6 @@ public class UserDto
     public int? Role { get; set; }
 
     public int? AccumulatedPoints { get; set; }
+    public string? Image { get; set; }
 
 }

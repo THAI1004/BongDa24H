@@ -1,6 +1,7 @@
 using Backend.Dtos.MatchRequest;
 using Backend.Interfaces;
 using Backend.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Backend.Admin.Controllers;
@@ -15,6 +16,7 @@ public class MatchRequestController : ControllerBase
         _context = context;
         _matchRequestRepository = matchRequestRepository;
     }
+    [Authorize]
     [HttpPost]
     public async Task<IActionResult> CreateMatchRequest([FromBody] CreateMatchRequestDto matchRequestDto)
     {
@@ -49,6 +51,7 @@ public class MatchRequestController : ControllerBase
             });
         }
     }
+    [Authorize]
     [HttpGet("{pitchId}")]
     public async Task<IActionResult> GetMatchRequestByPitch([FromRoute] int pitchId)
     {
@@ -79,6 +82,7 @@ public class MatchRequestController : ControllerBase
             });
         }
     }
+
     [HttpGet]
     public async Task<IActionResult> GetAllMatchRequest()
     {

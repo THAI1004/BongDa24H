@@ -27,7 +27,12 @@ public class MatchRequestRepository : IMatchRequestRepository
     }
     public async Task<List<MatchRequest>> GetAllMatchRequest()
     {
-        return await _context.MatchRequests.ToListAsync();
+        return await _context.MatchRequests.Include(m => m.Creator).ThenInclude(u => u.Teams)
+    .Include(m => m.Pitch)
+    .ThenInclude(p => p.Cluster)
+    .Include(m => m.MatchResponses)
+        .ThenInclude(r => r.Responder)   // load cả user phản hồi
+    .ToListAsync(); ;
     }
 
 

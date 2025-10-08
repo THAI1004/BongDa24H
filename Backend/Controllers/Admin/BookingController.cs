@@ -2,6 +2,7 @@ using Backend.Dtos.Booking;
 using Backend.Dtos.Payment;
 using Backend.Interfaces;
 using Backend.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Backend.Controllers.Admin;
@@ -47,11 +48,16 @@ public class BookingController : ControllerBase
             });
         }
     }
+    [Authorize]
     [HttpPost]
     public async Task<IActionResult> CreateBooking([FromBody] CreateBooking booking)
     {
         try
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
             if (booking == null)
             {
                 return BadRequest(new
@@ -78,11 +84,16 @@ public class BookingController : ControllerBase
             });
         }
     }
+    [Authorize]
     [HttpPut("{bookingId}")]
     public async Task<IActionResult> UpdateBooking([FromBody] CreateBooking booking, [FromRoute] int bookingId)
     {
         try
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
             var existingBooking = await _bookingRepository.GetBookingByIdAsync(bookingId);
             if (existingBooking == null)
             {
@@ -111,6 +122,7 @@ public class BookingController : ControllerBase
             });
         }
     }
+    [Authorize]
     [HttpDelete("{bookingId}")]
     public async Task<IActionResult> DeleteBooking([FromRoute] int bookingId)
     {
@@ -150,6 +162,7 @@ public class BookingController : ControllerBase
             });
         }
     }
+    [Authorize]
     [HttpPost("bookingId/deposit")]
     public async Task<IActionResult> DepositBooking([FromBody] CreatePaymentDto payment)
     {
@@ -187,6 +200,7 @@ public class BookingController : ControllerBase
             });
         }
     }
+    [Authorize]
     [HttpPost("{bookingId}/cancel")]
     public async Task<IActionResult> CancelBooking([FromRoute] int bookingId)
     {

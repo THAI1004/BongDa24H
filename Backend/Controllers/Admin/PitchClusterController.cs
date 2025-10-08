@@ -5,6 +5,7 @@ using Backend.Mappers;
 using Backend.Dtos.PitchCluster;
 using Backend.Interfaces;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 namespace Backend.Controllers.Admin;
 
 [Route("api/pitchcluster")]
@@ -37,6 +38,7 @@ public class PitchClusterController : ControllerBase
             success = true
         });
     }
+    [Authorize]
     [HttpGet("{id}")]
     public IActionResult GetById([FromRoute] int id)
     {
@@ -56,12 +58,16 @@ public class PitchClusterController : ControllerBase
             success = true
         });
     }
+    [Authorize]
     [HttpPost]
     public async Task<IActionResult> Create([FromBody] CreatePitchClusterDto pitchClusterDto)
     {
         var pitchCluster = pitchClusterDto.ToPitchCluster();
         await _pitchClusterRepository.Create(pitchCluster);
-
+        if (!ModelState.IsValid)
+        {
+            return BadRequest(ModelState);
+        }
         if (pitchCluster == null)
         {
             return BadRequest(new
@@ -77,10 +83,15 @@ public class PitchClusterController : ControllerBase
             success = true
         });
     }
+    [Authorize]
     [HttpPut("{id}")]
     public async Task<IActionResult> Update([FromRoute] int id, [FromBody] CreatePitchClusterDto pitchClusterDto)
     {
         var pitchCluster = _context.PitchClusters.FirstOrDefault(p => p.Id == id);
+        if (!ModelState.IsValid)
+        {
+            return BadRequest(ModelState);
+        }
         if (pitchCluster == null)
         {
             return NotFound(new
@@ -102,6 +113,7 @@ public class PitchClusterController : ControllerBase
             success = true
         });
     }
+    [Authorize]
     [HttpDelete("{id}")]
     public async Task<IActionResult> Delete([FromRoute] int id)
     {

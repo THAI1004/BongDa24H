@@ -1,6 +1,7 @@
 using Backend.Dtos;
 using Backend.Interfaces;
 using Backend.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Backend.Controllers.Admin;
@@ -17,11 +18,16 @@ public class ReviewController : ControllerBase
         _bookingRepository = bookingRepository;
     }
 
+    [Authorize]
     [HttpPost]
     public async Task<IActionResult> CreateReview([FromBody] ReviewDto reviewDto)
     {
         try
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
             if (reviewDto == null)
             {
                 return BadRequest(new
@@ -31,7 +37,7 @@ public class ReviewController : ControllerBase
                 });
             }
             var booking = await _bookingRepository.GetBookingByIdAsync(reviewDto.BookingId);
-            if (booking.Status != 3)
+            if (booking?.Status != 3)
             {
                 return BadRequest(new
                 {

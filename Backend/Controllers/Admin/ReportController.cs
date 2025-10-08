@@ -1,5 +1,6 @@
 using Backend.Dtos.Report;
 using Backend.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Backend.Controllers.Admin;
@@ -13,11 +14,16 @@ public class ReportController : ControllerBase
     {
         _reportRepository = reportRepository;
     }
+    [Authorize]
     [HttpPost]
     public async Task<IActionResult> CreateReport(CreateReportDto createReportDto)
     {
         try
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
             if (createReportDto == null)
             {
                 return BadRequest(new
@@ -43,11 +49,16 @@ public class ReportController : ControllerBase
             });
         }
     }
+    [Authorize]
     [HttpPut("{Id}")]
     public async Task<IActionResult> UpdateReport([FromRoute] int Id, [FromBody] CreateReportDto createReportDto)
     {
         try
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
             var report = await _reportRepository.GetReportById(Id);
             if (report == null)
             {

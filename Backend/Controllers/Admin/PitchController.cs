@@ -2,6 +2,7 @@ using Backend.Dtos.Pitch;
 using Backend.Interfaces;
 using Backend.Mappers;
 using Backend.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.CodeAnalysis.CodeFixes;
 
@@ -18,6 +19,7 @@ public class PitchController : ControllerBase
         _pitchRepository = pitchRepository;
         _context = context;
     }
+    [Authorize]
     [HttpGet]
     public async Task<IActionResult> GetAllPitches()
     {
@@ -37,6 +39,7 @@ public class PitchController : ControllerBase
             success = true
         });
     }
+    [Authorize]
     [HttpGet("{id}")]
     public async Task<IActionResult> GetPitchById(int id)
     {
@@ -59,11 +62,16 @@ public class PitchController : ControllerBase
             });
         }
     }
+    [Authorize]
     [HttpPost]
     public async Task<IActionResult> CreatePitch([FromBody] CreatePitchDto createPitchDto)
     {
         try
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
             if (createPitchDto == null)
             {
                 return BadRequest(new
@@ -90,11 +98,16 @@ public class PitchController : ControllerBase
             });
         }
     }
+    [Authorize]
     [HttpPut("{id}")]
     public async Task<IActionResult> UpdatePitch([FromRoute] int id, [FromBody] CreatePitchDto updatePitchDto)
     {
         try
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
             var pitch = await _pitchRepository.GetPitchByIdAsync(id);
             if (pitch == null)
             {
@@ -134,6 +147,7 @@ public class PitchController : ControllerBase
             });
         }
     }
+    [Authorize]
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeletePitch([FromRoute] int id)
     {

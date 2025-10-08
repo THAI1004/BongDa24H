@@ -6,7 +6,9 @@ namespace Backend.Interfaces;
 public interface IUserRepository
 {
     Task<List<User>> GetAllUserAsyn();
-    Task<User?> GetUserById(int Id);
-    Task<CreateUserDto> CreateUserAsun(CreateUserDto createUserDto);
-    Task<User> UpdateUserAsyn(User user);
+    Task<UpdateUserDto?> GetUserById(int Id);
+    Task<CreateUserDto> CreateUserAsyn(CreateUserDto createUserDto);
+    Task<User> UpdateUserAsyn(UpdateUserDto updateUserDto);
+    Task<User?> CheckLogin(string email);
+
 }

@@ -1,5 +1,6 @@
 using Backend.Dtos;
 using Backend.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Backend.Controllers.Admin;
@@ -13,11 +14,16 @@ public class PromotionController : ControllerBase
     {
         _promotionRepository = promotionRepository;
     }
+    [Authorize]
     [HttpPost]
     public async Task<IActionResult> CreatePromotion(CreatePromotionDto createPromotionDto)
     {
         try
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
             if (createPromotionDto == null)
             {
                 return BadRequest(new
