@@ -11,11 +11,11 @@ public partial class Pitch
 
     public int ClusterId { get; set; }
 
-    public string PitchType { get; set; } = null!;
-
     public string? ImageUrl { get; set; }
 
     public string? Facilities { get; set; }
+
+    public int? PitchType { get; set; }
 
     public virtual ICollection<Booking> Bookings { get; set; } = new List<Booking>();
 

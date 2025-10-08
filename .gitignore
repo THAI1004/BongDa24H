@@ -20,3 +20,8 @@ rad.json
 *.flf
 #Test results file
 TestResults.xml
+/Backend/appsettings*.json
+/Backend/bin/
+/Backend/obj/
+# Thêm file .env vào .gitignore
+echo "Backend/.env" >> .gitignore

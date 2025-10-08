@@ -16,6 +16,7 @@ public partial class PitchCluster
     public double? Latitude { get; set; }
 
     public int OwnerId { get; set; }
+    public string? Image { get; set; }
 
     public virtual User Owner { get; set; } = null!;
 

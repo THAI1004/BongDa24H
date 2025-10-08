@@ -15,9 +15,11 @@ public partial class User
 
     public string? PhoneNumber { get; set; }
 
-    public string Role { get; set; } = null!;
+    public int? Role { get; set; }
 
     public int? AccumulatedPoints { get; set; }
+    public string? Image { get; set; }
+
 
     public virtual ICollection<Booking> Bookings { get; set; } = new List<Booking>();
 

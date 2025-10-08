@@ -13,4 +13,5 @@ public class CreatePitchClusterDto
     public double? Latitude { get; set; }
 
     public int OwnerId { get; set; }
+    public string? Image { get; set; }
 }

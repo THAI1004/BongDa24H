@@ -1,0 +1,341 @@
+[
+  {
+    "ContainingType": "Backend.Controllers.Admin.BookingController",
+    "Method": "CreateBooking",
+    "RelativePath": "api/booking",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "booking",
+        "Type": "Backend.Dtos.Booking.CreateBooking",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Backend.Controllers.Admin.BookingController",
+    "Method": "UpdateBooking",
+    "RelativePath": "api/booking/{bookingId}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "booking",
+        "Type": "Backend.Dtos.Booking.CreateBooking",
+        "IsRequired": true
+      },
+      {
+        "Name": "bookingId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Backend.Controllers.Admin.BookingController",
+    "Method": "DeleteBooking",
+    "RelativePath": "api/booking/{bookingId}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "bookingId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Backend.Controllers.Admin.BookingController",
+    "Method": "CancelBooking",
+    "RelativePath": "api/booking/{bookingId}/cancel",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "bookingId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Backend.Controllers.Admin.BookingController",
+    "Method": "DepositBooking",
+    "RelativePath": "api/booking/bookingId/deposit",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "payment",
+        "Type": "Backend.Dtos.Payment.CreatePaymentDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Backend.Controllers.Admin.BookingController",
+    "Method": "GetBookings",
+    "RelativePath": "api/booking/pitchId",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pitchId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Backend.Admin.Controllers.MatchRequestController",
+    "Method": "CreateMatchRequest",
+    "RelativePath": "api/match-request",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "matchRequestDto",
+        "Type": "Backend.Dtos.MatchRequest.CreateMatchRequestDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Backend.Controllers.Admin.PitchController",
+    "Method": "GetAllPitches",
+    "RelativePath": "api/pitch",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Backend.Controllers.Admin.PitchController",
+    "Method": "CreatePitch",
+    "RelativePath": "api/pitch",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "createPitchDto",
+        "Type": "Backend.Dtos.Pitch.CreatePitchDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Backend.Controllers.Admin.PitchController",
+    "Method": "GetPitchById",
+    "RelativePath": "api/pitch/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Backend.Controllers.Admin.PitchController",
+    "Method": "UpdatePitch",
+    "RelativePath": "api/pitch/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "updatePitchDto",
+        "Type": "Backend.Dtos.Pitch.CreatePitchDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Backend.Controllers.Admin.PitchController",
+    "Method": "DeletePitch",
+    "RelativePath": "api/pitch/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Backend.Controllers.Admin.PitchClusterController",
+    "Method": "GetAll",
+    "RelativePath": "api/pitchcluster",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Backend.Controllers.Admin.PitchClusterController",
+    "Method": "Create",
+    "RelativePath": "api/pitchcluster",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pitchClusterDto",
+        "Type": "Backend.Dtos.PitchCluster.CreatePitchClusterDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Backend.Controllers.Admin.PitchClusterController",
+    "Method": "GetById",
+    "RelativePath": "api/pitchcluster/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Backend.Controllers.Admin.PitchClusterController",
+    "Method": "Update",
+    "RelativePath": "api/pitchcluster/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "pitchClusterDto",
+        "Type": "Backend.Dtos.PitchCluster.CreatePitchClusterDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Backend.Controllers.Admin.PitchClusterController",
+    "Method": "Delete",
+    "RelativePath": "api/pitchcluster/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Backend.Controllers.Admin.PricingController",
+    "Method": "GetPrice",
+    "RelativePath": "api/pricingRule",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "PitchId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Backend.Controllers.Admin.PricingController",
+    "Method": "CreatePrice",
+    "RelativePath": "api/pricingRule",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pricingRule",
+        "Type": "Backend.Models.PricingRule",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Backend.Controllers.Admin.PricingController",
+    "Method": "UpdatePrice",
+    "RelativePath": "api/pricingRule",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pricingRule",
+        "Type": "Backend.Models.PricingRule",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Backend.Controllers.Admin.PricingController",
+    "Method": "DeletePricing",
+    "RelativePath": "api/pricingRule/{pricingId}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pricingId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  }
+]

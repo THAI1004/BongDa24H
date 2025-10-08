@@ -11,11 +11,11 @@ public partial class Payment
 
     public int Amount { get; set; }
 
-    public string Method { get; set; } = null!;
-
-    public string Type { get; set; } = null!;
-
     public DateTime PaymentTime { get; set; }
+
+    public int? Type { get; set; }
+
+    public int? Method { get; set; }
 
     public virtual Booking Booking { get; set; } = null!;
 }

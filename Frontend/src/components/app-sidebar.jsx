@@ -1,0 +1,77 @@
+import * as React from "react";
+import {
+    IconCamera,
+    IconChartBar,
+    IconDashboard,
+    IconDatabase,
+    IconFileAi,
+    IconFileDescription,
+    IconFileWord,
+    IconFolder,
+    IconHelp,
+    IconInnerShadowTop,
+    IconListDetails,
+    IconReport,
+    IconSearch,
+    IconSettings,
+    IconUsers,
+} from "@tabler/icons-react";
+
+import { NavDocuments } from "@/components/nav-documents";
+import { NavMain } from "@/components/nav-main";
+import { NavSecondary } from "@/components/nav-secondary";
+import { NavUser } from "@/components/nav-user";
+import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from "@/components/ui/sidebar";
+import { Link } from "react-router-dom";
+import { json } from "zod";
+import Logo from "./ui/Logo";
+
+export const data = {
+    user: JSON.parse(localStorage.getItem("user")),
+    navMain: [
+        {
+            title: "Dashboard",
+            url: "/admin",
+            icon: IconDashboard,
+        },
+        {
+            title: "Trang 1",
+            url: "/admin/trang1",
+            icon: IconListDetails,
+        },
+        {
+            title: "Trang 2",
+            url: "/admin/trang2",
+            icon: IconListDetails,
+        },
+        {
+            title: "Trang 3",
+            url: "/admin/trang3",
+            icon: IconListDetails,
+        },
+    ],
+};
+
+export function AppSidebar({ ...props }) {
+    return (
+        <Sidebar collapsible="offcanvas" {...props}>
+            <SidebarHeader>
+                <SidebarMenu>
+                    <SidebarMenuItem>
+                        <SidebarMenuButton asChild className="data-[slot=sidebar-menu-button]:!p-1.5">
+                            <Link to="/">
+                                <Logo />
+                            </Link>
+                        </SidebarMenuButton>
+                    </SidebarMenuItem>
+                </SidebarMenu>
+            </SidebarHeader>
+            <SidebarContent>
+                <NavMain items={data.navMain} />
+            </SidebarContent>
+            <SidebarFooter>
+                <NavUser user={data.user} />
+            </SidebarFooter>
+        </Sidebar>
+    );
+}

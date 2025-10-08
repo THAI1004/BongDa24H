@@ -1,0 +1,9 @@
+import React from "react";
+import imgage from "../../public/loading.gif";
+export default function Loading() {
+    return (
+        <div className="fixed inset-0 flex items-center justify-center bg-white z-50">
+            <img src={imgage} alt="loading" />
+        </div>
+    );
+}

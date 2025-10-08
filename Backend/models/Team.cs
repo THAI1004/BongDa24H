@@ -15,7 +15,8 @@ public partial class Team
 
     public int? Wins { get; set; }
 
-    public string? SkillLevel { get; set; }
+    public int? SkillLevel { get; set; }
+    public string? Image { get; set; }
 
     public virtual User Manager { get; set; } = null!;
 }

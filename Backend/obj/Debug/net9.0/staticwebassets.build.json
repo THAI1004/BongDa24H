@@ -1,12 +1,125 @@
 {
   "Version": 1,
-  "Hash": "+8gz7rjoDcLSTM7Kwf5qkbapKXDd97xhyAb9pxhYrew=",
+  "Hash": "TLYZERF6pNIW1658XzWof/1JBPl4nQUbAGxra6qrsoo=",
   "Source": "Backend",
   "BasePath": "_content/Backend",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
-  "DiscoveryPatterns": [],
-  "Assets": [],
-  "Endpoints": []
+  "DiscoveryPatterns": [
+    {
+      "Name": "Backend\\wwwroot",
+      "Source": "Backend",
+      "ContentRoot": "D:\\BongDa 24h new\\Backend\\wwwroot\\",
+      "BasePath": "_content/Backend",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "D:\\BongDa 24h new\\Backend\\wwwroot\\uploads\\a8466007-545d-4d5d-bdd7-7ccf9ef894dc_Screenshot 2025-10-04 070907.png",
+      "SourceId": "Backend",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\BongDa 24h new\\Backend\\wwwroot\\",
+      "BasePath": "_content/Backend",
+      "RelativePath": "uploads/a8466007-545d-4d5d-bdd7-7ccf9ef894dc_Screenshot 2025-10-04 070907#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "ktcrk4b7g9",
+      "Integrity": "WPJT/sMtY/Sx/pY3PGvR9z/a0MTyvbaC/Rg9OWBFzaY=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\a8466007-545d-4d5d-bdd7-7ccf9ef894dc_Screenshot 2025-10-04 070907.png"
+    }
+  ],
+  "Endpoints": [
+    {
+      "Route": "uploads/a8466007-545d-4d5d-bdd7-7ccf9ef894dc_Screenshot 2025-10-04 070907.ktcrk4b7g9.png",
+      "AssetFile": "D:\\BongDa 24h new\\Backend\\wwwroot\\uploads\\a8466007-545d-4d5d-bdd7-7ccf9ef894dc_Screenshot 2025-10-04 070907.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "48675"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"WPJT/sMtY/Sx/pY3PGvR9z/a0MTyvbaC/Rg9OWBFzaY=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 07 Oct 2025 13:15:30 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "ktcrk4b7g9"
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/a8466007-545d-4d5d-bdd7-7ccf9ef894dc_Screenshot 2025-10-04 070907.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-WPJT/sMtY/Sx/pY3PGvR9z/a0MTyvbaC/Rg9OWBFzaY="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/a8466007-545d-4d5d-bdd7-7ccf9ef894dc_Screenshot 2025-10-04 070907.png",
+      "AssetFile": "D:\\BongDa 24h new\\Backend\\wwwroot\\uploads\\a8466007-545d-4d5d-bdd7-7ccf9ef894dc_Screenshot 2025-10-04 070907.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "48675"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"WPJT/sMtY/Sx/pY3PGvR9z/a0MTyvbaC/Rg9OWBFzaY=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 07 Oct 2025 13:15:30 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-WPJT/sMtY/Sx/pY3PGvR9z/a0MTyvbaC/Rg9OWBFzaY="
+        }
+      ]
+    }
+  ]
 }

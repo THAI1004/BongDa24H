@@ -17,7 +17,7 @@ public partial class Report
 
     public DateTime ReportDate { get; set; }
 
-    public string Status { get; set; } = null!;
+    public int? Status { get; set; }
 
     public virtual User Reporter { get; set; } = null!;
 }
