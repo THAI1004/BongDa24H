@@ -6,13 +6,14 @@ import { useAppContext } from "@/context/AppContext.jsx";
 
 export default function FieldBookingSection() {
     const { fiels, fetchField, loading } = useAppContext();
-
     console.log("🚀 ~ FieldBookingSection ~ fiels:", fiels);
 
     useEffect(() => {
-        if (!fiels.lenght) fetchField();
+        if (!fiels.length) fetchField();
     }, []);
     if (loading && fiels.length === 0) return <Loading />;
+    const featuredFields = fiels.slice(0, 6);
+    console.log("🚀 ~ FieldBookingSection ~ featuredFields:", featuredFields);
     return (
         <section className="max-w-7xl mx-auto py-24">
             <div className="container mx-auto px-6 lg:px-8">
@@ -26,7 +27,7 @@ export default function FieldBookingSection() {
                 </div>
 
                 <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-                    {fiels.map((field) => (
+                    {featuredFields.map((field) => (
                         <div
                             key={field.id}
                             className="group relative overflow-hidden rounded-3xl border border-border bg-card shadow-lg transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-accent/10"
@@ -39,8 +40,6 @@ export default function FieldBookingSection() {
                                 />
                                 {/* Gradient overlay for better text readability */}
                                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-black/20" />
-
-                               
                             </div>
 
                             <div className="p-6">
@@ -60,7 +59,7 @@ export default function FieldBookingSection() {
                                     </div>
                                     <div className="flex items-center gap-1.5 text-sm text-muted-foreground">
                                         <Users className="h-4 w-4 text-accent" />
-                                        <span>{field.pitches.pitchType ==1 ? "5x5" :"7x7 "}</span>
+                                        <span>{field.pitches.pitchType == 1 ? "5x5" : "7x7 "}</span>
                                     </div>
                                 </div>
 

@@ -14,7 +14,7 @@ import { SidebarMenu, SidebarMenuButton, SidebarMenuItem, useSidebar } from "@/c
 import { Link } from "react-router-dom";
 
 export function NavUser({ user }) {
-    console.log("🚀 ~ NavUser ~ user:", user);
+    // console.log("🚀 ~ NavUser ~ user:", user);
     const { isMobile } = useSidebar();
 
     return (
