@@ -25,20 +25,11 @@ public class UserRepository : IUserRepository
         return await _context.Users.ToListAsync();
     }
 
-    public async Task<UpdateUserDto?> GetUserById(int Id)
+    public async Task<User?> GetUserById(int Id)
     {
-        var user = await _context.Users.FirstOrDefaultAsync(u => u.Id == Id);
-        if (user == null) return null;
+        return await _context.Users.Include(t => t.Teams).Include(t => t.MatchRequests).Include(t => t.MatchResponses).Include(t => t.Reports).Include(t => t.Bookings).Include(t => t.PitchClusters)
+        .FirstOrDefaultAsync(u => u.Id == Id);
 
-        return new UpdateUserDto
-        {
-            Id = user.Id,
-            FullName = user.FullName,
-            Email = user.Email,
-            PhoneNumber = user.PhoneNumber,
-            Role = user.Role,
-            Image = user.Image
-        };
     }
 
 

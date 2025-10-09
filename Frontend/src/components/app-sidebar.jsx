@@ -35,19 +35,9 @@ export const data = {
             icon: IconDashboard,
         },
         {
-            title: "Trang 1",
-            url: "/admin/trang1",
-            icon: IconListDetails,
-        },
-        {
-            title: "Trang 2",
-            url: "/admin/trang2",
-            icon: IconListDetails,
-        },
-        {
-            title: "Trang 3",
-            url: "/admin/trang3",
-            icon: IconListDetails,
+            title: "Người dùng",
+            url: "/admin/user",
+            icon: IconUsers,
         },
     ],
 };

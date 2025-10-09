@@ -29,6 +29,30 @@ public class AuthController : ControllerBase
         _userRepository = userRepository;
     }
 
+    [Authorize]
+    [HttpGet]
+    public async Task<IActionResult> GetAllUser()
+    {
+        try
+        {
+            var response = await _userRepository.GetAllUserAsyn();
+            if (response == null) return BadRequest("Không có tài khoản nào.");
+            return Ok(new
+            {
+                data = response,
+                message = "Lấy tài khoản thành công.",
+                success = true
+            });
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, new
+            {
+                message = "Lấy tài khoản thất bại",
+                details = ex.InnerException?.Message ?? ex.Message
+            });
+        }
+    }
     [HttpPost("register")]
     public async Task<IActionResult> Register([FromBody] CreateUserDto userDto)
     {
@@ -203,7 +227,7 @@ public class AuthController : ControllerBase
 
     [Authorize]
     [HttpGet("{id}")]
-    public async Task<IActionResult> getUserById([FromRoute] int id)
+    public async Task<IActionResult> GetUserById([FromRoute] int id)
     {
         try
         {

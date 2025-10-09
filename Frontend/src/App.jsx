@@ -10,6 +10,8 @@ import CheckRole from "./components/CheckRole";
 import AdminLayout from "./layout/Admin/AdminLayout";
 import Trang1 from "./pages/Admin/Trang1";
 import Profile from "./pages/Admin/Profile";
+import ListUser from "./pages/Admin/User/ListUser";
+import UserDetail from "./pages/Admin/User/UserDetail";
 
 function App() {
     return (
@@ -33,7 +35,8 @@ function App() {
                     }
                 >
                     <Route index element={<HomeAdmin />} />
-                    <Route path="trang1" element={<Trang1 />} />
+                    <Route path="user" element={<ListUser />} />
+                    <Route path="user/:id" element={<UserDetail />} />
                     <Route path="profile" element={<Profile />} />
                 </Route>
                 <Route path="login" element={<Login />} />
