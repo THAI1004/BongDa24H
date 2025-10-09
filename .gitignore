@@ -23,5 +23,7 @@ TestResults.xml
 /Backend/appsettings*.json
 /Backend/bin/
 /Backend/obj/
+echo "Backend/.env" >> .gitignore
 # Thêm file .env vào .gitignore
 echo "Backend/.env" >> .gitignore
+echo "Frontend/.env" >> .gitignore

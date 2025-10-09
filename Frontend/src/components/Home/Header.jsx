@@ -1,15 +1,26 @@
 import { Link, useNavigate } from "react-router-dom";
 import { Search } from "lucide-react";
 import { toast } from "sonner";
-
+import {
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuItem,
+    DropdownMenuLabel,
+    DropdownMenuSeparator,
+    DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 export default function Header() {
+    const VITE_BEURLIMAGE = import.meta.env.VITE_BEURLIMAGE;
     const user = JSON.parse(localStorage.getItem("user"));
+
     const navigate = useNavigate();
     const handleLogout = () => {
         // Xóa token trong localStorage/sessionStorage
         localStorage.removeItem("token");
         // Clear context / state
         localStorage.removeItem("user");
+        console.log("🚀 ~ handleLogout ~ user:", user);
         // Có thể redirect về trang chủ
         toast.success("Bạn đã đăng xuất.");
 
@@ -54,18 +65,35 @@ export default function Header() {
                         </div>
                         {user ? (
                             <div className="flex items-center gap-4">
+                                <DropdownMenu>
+                                    <DropdownMenuTrigger>
+                                        <span className="flex">
+                                            <Avatar>
+                                                <AvatarImage src={VITE_BEURLIMAGE + user.image} />
+                                                <AvatarFallback>CN</AvatarFallback>
+                                            </Avatar>{" "}
+                                            <span className="font-semibold m-2">{user.fullName || user}</span>
+                                        </span>
+                                    </DropdownMenuTrigger>
+                                    <DropdownMenuContent>
+                                        <DropdownMenuLabel>
+                                            <Link to={"profile"}>My Account</Link>
+                                        </DropdownMenuLabel>
+                                        <DropdownMenuSeparator />
+                                        <DropdownMenuItem>Profile</DropdownMenuItem>
+                                        <DropdownMenuItem>Billing</DropdownMenuItem>
+                                        <DropdownMenuItem>Team</DropdownMenuItem>
+                                        <DropdownMenuItem>Subscription</DropdownMenuItem>
+                                        <DropdownMenuItem>
+                                            <button onClick={handleLogout} className="">
+                                                Đăng Xuất
+                                            </button>
+                                        </DropdownMenuItem>
+                                    </DropdownMenuContent>
+                                </DropdownMenu>
                                 {/* Hiển thị tên user */}
-                                <span className="text-sm font-medium text-foreground">
-                                    Xin chào, <span className="font-semibold">{user.fullName || user}</span>
-                                </span>
 
                                 {/* Nút đăng xuất */}
-                                <button
-                                    onClick={handleLogout}
-                                    className="rounded-full border border-accent bg-accent/5 px-5 py-2 text-sm font-semibold text-accent transition-all hover:bg-accent hover:text-accent-foreground hover:shadow-lg hover:shadow-accent/20"
-                                >
-                                    Đăng Xuất
-                                </button>
                             </div>
                         ) : (
                             <div className="flex items-center gap-4">

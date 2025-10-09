@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "TLYZERF6pNIW1658XzWof/1JBPl4nQUbAGxra6qrsoo=",
+  "Hash": "gJ27o/IB6xBjsZUO/rtZGMtM6LacqNChLVctBAQFRLo=",
   "Source": "Backend",
   "BasePath": "_content/Backend",
   "Mode": "Default",
@@ -16,6 +16,27 @@
     }
   ],
   "Assets": [
+    {
+      "Identity": "D:\\BongDa 24h new\\Backend\\wwwroot\\uploads\\4a0a5c23-bc9b-4e19-bb8c-a4adf07e7442_Screenshot 2025-09-30 232253.png",
+      "SourceId": "Backend",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\BongDa 24h new\\Backend\\wwwroot\\",
+      "BasePath": "_content/Backend",
+      "RelativePath": "uploads/4a0a5c23-bc9b-4e19-bb8c-a4adf07e7442_Screenshot 2025-09-30 232253#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "8y50759quc",
+      "Integrity": "4Da/BRBjKoDR4uhvfbywi/ju2jHHZRPbDWoWQ9BGgmQ=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\4a0a5c23-bc9b-4e19-bb8c-a4adf07e7442_Screenshot 2025-09-30 232253.png"
+    },
     {
       "Identity": "D:\\BongDa 24h new\\Backend\\wwwroot\\uploads\\a8466007-545d-4d5d-bdd7-7ccf9ef894dc_Screenshot 2025-10-04 070907.png",
       "SourceId": "Backend",
@@ -40,6 +61,88 @@
   ],
   "Endpoints": [
     {
+      "Route": "uploads/4a0a5c23-bc9b-4e19-bb8c-a4adf07e7442_Screenshot 2025-09-30 232253.8y50759quc.png",
+      "AssetFile": "D:\\BongDa 24h new\\Backend\\wwwroot\\uploads\\4a0a5c23-bc9b-4e19-bb8c-a4adf07e7442_Screenshot 2025-09-30 232253.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "50069"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"4Da/BRBjKoDR4uhvfbywi/ju2jHHZRPbDWoWQ9BGgmQ=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 08 Oct 2025 08:38:38 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "8y50759quc"
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/4a0a5c23-bc9b-4e19-bb8c-a4adf07e7442_Screenshot 2025-09-30 232253.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-4Da/BRBjKoDR4uhvfbywi/ju2jHHZRPbDWoWQ9BGgmQ="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/4a0a5c23-bc9b-4e19-bb8c-a4adf07e7442_Screenshot 2025-09-30 232253.png",
+      "AssetFile": "D:\\BongDa 24h new\\Backend\\wwwroot\\uploads\\4a0a5c23-bc9b-4e19-bb8c-a4adf07e7442_Screenshot 2025-09-30 232253.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "50069"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"4Da/BRBjKoDR4uhvfbywi/ju2jHHZRPbDWoWQ9BGgmQ=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 08 Oct 2025 08:38:38 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-4Da/BRBjKoDR4uhvfbywi/ju2jHHZRPbDWoWQ9BGgmQ="
+        }
+      ]
+    },
+    {
       "Route": "uploads/a8466007-545d-4d5d-bdd7-7ccf9ef894dc_Screenshot 2025-10-04 070907.ktcrk4b7g9.png",
       "AssetFile": "D:\\BongDa 24h new\\Backend\\wwwroot\\uploads\\a8466007-545d-4d5d-bdd7-7ccf9ef894dc_Screenshot 2025-10-04 070907.png",
       "Selectors": [],
@@ -62,7 +165,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 07 Oct 2025 13:15:30 GMT"
+          "Value": "Wed, 08 Oct 2025 07:42:20 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -107,7 +210,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 07 Oct 2025 13:15:30 GMT"
+          "Value": "Wed, 08 Oct 2025 07:42:20 GMT"
         },
         {
           "Name": "Cache-Control",

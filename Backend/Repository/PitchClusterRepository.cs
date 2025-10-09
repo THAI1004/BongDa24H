@@ -15,11 +15,14 @@ public class PitchClusterRepository : IPitchClusterRepository
         _context = context;
     }
 
-    public async Task<List<PitchClusterDto>> GetAllPitchCluster()
+    public async Task<List<PitchCluster>> GetAllPitchCluster()
     {
-        return await _context.PitchClusters.Include(pc => pc.Pitches).Include(pc => pc.Owner)
-            .Select(pc => pc.ToPitchClusterDto())
-            .ToListAsync();
+        return await _context.PitchClusters
+        .Include(pc => pc.Owner)
+        .Include(pc => pc.Pitches)
+        .Include(pc => pc.Promotions)
+        .ToListAsync();
+
     }
     public async Task<PitchCluster> GetPitchClusterById(int id)
     {

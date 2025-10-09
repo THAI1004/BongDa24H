@@ -1,5 +1,23 @@
 ﻿<Project>
   <ItemGroup>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\4a0a5c23-bc9b-4e19-bb8c-a4adf07e7442_Screenshot 2025-09-30 232253.png'))">
+      <SourceType>Package</SourceType>
+      <SourceId>Backend</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/Backend</BasePath>
+      <RelativePath>uploads/4a0a5c23-bc9b-4e19-bb8c-a4adf07e7442_Screenshot 2025-09-30 232253.png</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>8y50759quc</Fingerprint>
+      <Integrity>4Da/BRBjKoDR4uhvfbywi/ju2jHHZRPbDWoWQ9BGgmQ=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\4a0a5c23-bc9b-4e19-bb8c-a4adf07e7442_Screenshot 2025-09-30 232253.png'))</OriginalItemSpec>
+    </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\a8466007-545d-4d5d-bdd7-7ccf9ef894dc_Screenshot 2025-10-04 070907.png'))">
       <SourceType>Package</SourceType>
       <SourceId>Backend</SourceId>
