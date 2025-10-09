@@ -18,6 +18,7 @@ function App() {
             <Routes>
                 <Route path="/" element={<ClientLayout />}>
                     <Route index element={<Home />} />
+                    <Route path="profile" element={<Profile />} />
 
                     {/* Ví dụ: Thêm các trang khác cũng dùng layout này */}
                     {/* <Route path="batdoi" element={<BatDoiPage />} /> */}

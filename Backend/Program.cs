@@ -7,7 +7,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Backend.Service;
 using System.Text.Json.Serialization;
-
+DotNetEnv.Env.Load();
 var builder = WebApplication.CreateBuilder(args);
 
 // ===== Đăng ký Repository =====
