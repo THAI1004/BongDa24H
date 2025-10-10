@@ -9,4 +9,5 @@ public interface ITeamRepository
     Task<CreateTeamDto> CreateTeamAsyn(CreateTeamDto createTeamDto);
     Task<Team?> GetTeamByIdAsyn(int Id);
     Task<Team> UpdateTeamAsyn(Team team);
+    Task<Team?> DeleteTeam(int id);
 }

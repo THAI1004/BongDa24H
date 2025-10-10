@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace Backend.Models;
 
@@ -17,11 +18,14 @@ public partial class Pitch
 
     public int? PitchType { get; set; }
 
+    [JsonIgnore]
     public virtual ICollection<Booking> Bookings { get; set; } = new List<Booking>();
 
     public virtual PitchCluster Cluster { get; set; } = null!;
 
+    [JsonIgnore]
     public virtual ICollection<MatchRequest> MatchRequests { get; set; } = new List<MatchRequest>();
 
+    [JsonIgnore]
     public virtual ICollection<PricingRule> PricingRules { get; set; } = new List<PricingRule>();
 }

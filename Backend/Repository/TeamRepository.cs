@@ -21,16 +21,30 @@ public class TeamRepository : ITeamRepository
     }
     public async Task<List<Team>> GetAllTeamAsyn()
     {
-        return await _context.Teams.ToListAsync();
+        return await _context.Teams.Include(t => t.Manager).ToListAsync();
+
     }
 
     public async Task<Team?> GetTeamByIdAsyn(int Id)
     {
-        return await _context.Teams.FirstOrDefaultAsync(t => t.Id == Id);
+        return await _context.Teams.Include(t => t.Manager)
+        .FirstOrDefaultAsync(t => t.Id == Id);
     }
 
     public async Task<Team> UpdateTeamAsyn(Team team)
     {
+        _context.Teams.Update(team);
+        await _context.SaveChangesAsync();
+        return team;
+    }
+    public async Task<Team?> DeleteTeam(int id)
+    {
+        var team = await _context.Teams.FirstOrDefaultAsync(t => t.Id == id);
+        if (team == null)
+        {
+            return null;
+        }
+        team.IsDeleted = true;
         _context.Teams.Update(team);
         await _context.SaveChangesAsync();
         return team;

@@ -6,10 +6,11 @@ import axios from "axios";
 import { DataTable, Pagination } from "@/components/Paginate";
 import { Link } from "react-router-dom";
 
-export default function ListUser() {
+export default function ListTeam() {
     const BEURL = import.meta.env.VITE_BEURL;
     const [loading, setLoading] = useState(false);
-    const [users, setUsers] = useState([]);
+    const [team, setTeam] = useState([]);
+    console.log("🚀 ~ ListTeam ~ team:", team);
     const token = localStorage.getItem("token");
     const [error, setError] = useState("");
 
@@ -20,14 +21,14 @@ export default function ListUser() {
     const [currentPage, setCurrentPage] = useState(1);
 
     // Tính toán tổng số trang
-    const totalPages = Math.ceil(users.length / ITEMS_PER_PAGE);
+    const totalPages = Math.ceil(team.length / ITEMS_PER_PAGE);
 
     // Lấy dữ liệu cho trang hiện tại
     const currentItems = useMemo(() => {
         const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
         const endIndex = startIndex + ITEMS_PER_PAGE;
-        return users.slice(startIndex, endIndex);
-    }, [currentPage, users]);
+        return team.slice(startIndex, endIndex);
+    }, [currentPage, team]);
     // users được thêm vào dependency vì dữ liệu có thể thay đổi sau khi gọi API
 
     const handlePageChange = (page) => {
@@ -39,74 +40,80 @@ export default function ListUser() {
 
     useEffect(() => {
         setLoading(true);
-        const fetchUser = async () => {
+        const fetchTeam = async () => {
             try {
-                const response = await axios.get(`${BEURL}/auth`, {
+                const response = await axios.get(`${BEURL}/team`, {
                     headers: {
                         Authorization: `Bearer ${token}`,
                     },
                 });
-                const usersData = response?.data?.data || [];
-                setUsers(usersData);
-                if (usersData.length === 0) {
-                    setError("Danh sách người dùng rỗng.");
+                const teamData = response?.data?.data || [];
+                setTeam(teamData);
+                if (teamData.length === 0) {
+                    setError("Danh sách đội trống.");
                 } else {
                     setError("");
                 }
             } catch (error) {
-                console.error("Lỗi khi tải người dùng:", error);
+                console.error("Lỗi khi tải đội bóng:", error);
                 setError("Đã xảy ra lỗi khi tải dữ liệu.");
             } finally {
                 setLoading(false);
             }
         };
-        fetchUser();
+        fetchTeam();
     }, [BEURL, token]);
-
-    // Định nghĩa Header cho bảng
-    const userTableHeaders = [
-        { label: "ID", className: "w-[50px]" },
-        { label: "Tên đầy đủ", className: "" },
-        { label: "Email", className: "" },
-        { label: "Số điện thoại", className: "" },
-        { label: "Vai trò", className: "text-center w-[80px]" },
-        { label: "Thao tác", className: "text-center w-[150px]" },
-    ];
     const handleDelete = async (id) => {
         setLoading(true);
         try {
-            const response = await axios.delete(`${BEURL}/auth/${id}`, {
+            const response = await axios.delete(`${BEURL}/team/${id}`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
             });
-            if (response?.data?.status == false) {
-                setError("Lỗi khi xóa user");
+            if (response == null) {
                 setLoading(false);
+                setError("không thể xóa đội.");
             }
-            setUsers((prev) => prev.filter((u) => u.id !== id));
+            setTeam((prev) => prev.filter((t) => t.id !== id));
         } catch (error) {
-            console.error("Lỗi khi xóa user:", error);
-            setError("Không thể xóa người dùng này.");
+            setError(error);
         } finally {
             setLoading(false);
         }
     };
+    // Định nghĩa Header cho bảng
+    const teamTableHeaders = [
+        { label: "ID", className: "w-[50px]" },
+        { label: "Tên đôi", className: "" },
+        { label: "Quản lý", className: "" },
+        { label: "Số trận đá", className: "" },
+        { label: "Số trận thắng", className: "text-center w-[80px]" },
+        { label: "Thao tác", className: "text-center w-[150px]" },
+    ];
+
     // Hàm render từng hàng (row)
-    const renderUserRow = (user) => (
-        <TableRow key={user.id}>
-            <TableCell className="font-medium">{user.id}</TableCell>
-            <TableCell>{user.fullName}</TableCell>
-            <TableCell>{user.email}</TableCell>
-            <TableCell>{user.phoneNumber}</TableCell>
-            <TableCell className="text-center">{user.role === 1 ? "Admin" : "User"}</TableCell>
-            <TableCell className="text-center flex justify-center gap-1">
-                <Link to={`/admin/user/${user.id}`}>
+    const renderTeamRow = (team) => (
+        <TableRow key={team.id}>
+            <TableCell className="font-medium">{team.id}</TableCell>
+            <TableCell>{team.teamName}</TableCell>
+            <TableCell>{team.manager.fullName}</TableCell>
+            <TableCell>{team.totalMatches}</TableCell>
+            <TableCell className="text-center">{team.wins}</TableCell>
+            <TableCell className="text-center gap-1 justify-center flex">
+                <Link to={`/admin/team/${team.id}`}>
                     <Button className={"bg-blue-500 hover:bg-blue-600 hover:text-white"} variant="ghost" size="sm">
                         Chi tiết
                     </Button>
                 </Link>
-                <Button handle={() => handleDelete(user.id)} className={"bg-red-500 hover:bg-red-600 hover:text-white"} variant="ghost" size="sm">
+                <Button
+                    handle={() => {
+                        handleDelete(team.id);
+                    }}
+                    className={"bg-red-500 hover:bg-red-600 hover:text-white"}
+                    variant="ghost"
+                    size="sm"
+                >
                     xóa
                 </Button>
             </TableCell>
@@ -116,7 +123,7 @@ export default function ListUser() {
     return (
         <div className="p-2">
             <div className="flex justify-between items-center mb-4">
-                <h1 className="text-2xl font-sans font-medium">Danh sách người dùng</h1>
+                <h1 className="text-2xl font-sans font-medium">Danh sách đội bóng</h1>
                 <Button className="bg-blue-600 hover:bg-blue-700" variant="default">
                     Thêm mới
                 </Button>
@@ -125,12 +132,12 @@ export default function ListUser() {
             {loading && <p className="text-center py-4">Đang tải dữ liệu...</p>}
             {error && <p className="text-center py-4 text-red-500">{error}</p>}
 
-            {!loading && !error && users.length > 0 && (
+            {!loading && !error && team.length > 0 && (
                 <DataTable
-                    headers={userTableHeaders}
+                    headers={teamTableHeaders}
                     data={currentItems} // Truyền dữ liệu đã được phân trang
-                    renderRow={renderUserRow}
-                    totalItems={users.length}
+                    renderRow={renderTeamRow}
+                    totalItems={team.length}
                     currentPage={currentPage}
                     totalPages={totalPages}
                     onPageChange={handlePageChange}

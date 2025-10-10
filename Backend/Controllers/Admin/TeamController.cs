@@ -130,4 +130,58 @@ public class TeamController : ControllerBase
             });
         }
     }
+    [Authorize]
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> DeleteTeam([FromRoute] int id)
+    {
+        try
+        {
+            var team = await _teamRepository.DeleteTeam(id);
+            if (team == null)
+            {
+                return NotFound("Không tìm thấy team.");
+            }
+            return Ok(new
+            {
+                data = team,
+                message = "Xóa đội thành công.",
+                status = true
+            });
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, new
+            {
+                message = ex.Message,
+                success = false
+            });
+        }
+    }
+    [Authorize]
+    [HttpGet("{id}")]
+    public async Task<IActionResult> GetTeamById([FromRoute] int id)
+    {
+        try
+        {
+            var response = await _teamRepository.GetTeamByIdAsyn(id);
+            if (response == null)
+            {
+                return NotFound("Không tìm thấy đội.");
+            }
+            return Ok(new
+            {
+                data = response,
+                message = "Lấy chi tiết đội thành công.",
+                status = true
+            });
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, new
+            {
+                message = ex.Message,
+                success = false
+            });
+        }
+    }
 }

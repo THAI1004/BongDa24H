@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace Backend.Models;
 
@@ -15,6 +16,7 @@ public partial class MatchResponse
 
     public int? Status { get; set; }
 
+    [JsonIgnore]
     public virtual MatchRequest Request { get; set; } = null!;
 
     public virtual User Responder { get; set; } = null!;

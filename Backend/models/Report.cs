@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace Backend.Models;
 
@@ -19,5 +20,6 @@ public partial class Report
 
     public int? Status { get; set; }
 
+    [JsonIgnore]
     public virtual User Reporter { get; set; } = null!;
 }

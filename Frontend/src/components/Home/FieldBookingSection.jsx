@@ -6,14 +6,14 @@ import { useAppContext } from "@/context/AppContext.jsx";
 
 export default function FieldBookingSection() {
     const { fiels, fetchField, loading } = useAppContext();
-    console.log("🚀 ~ FieldBookingSection ~ fiels:", fiels);
+    // console.log("🚀 ~ FieldBookingSection ~ fiels:", fiels);
 
     useEffect(() => {
         if (!fiels.length) fetchField();
     }, []);
     if (loading && fiels.length === 0) return <Loading />;
     const featuredFields = fiels.slice(0, 6);
-    console.log("🚀 ~ FieldBookingSection ~ featuredFields:", featuredFields);
+    // console.log("🚀 ~ FieldBookingSection ~ featuredFields:", featuredFields);
     return (
         <section className="max-w-7xl mx-auto py-24">
             <div className="container mx-auto px-6 lg:px-8">

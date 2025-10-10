@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace Backend.Models;
 
@@ -17,5 +18,6 @@ public partial class Payment
 
     public int? Method { get; set; }
 
+    [JsonIgnore]
     public virtual Booking Booking { get; set; } = null!;
 }

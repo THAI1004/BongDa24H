@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace Backend.Models;
 
@@ -18,9 +19,11 @@ public partial class PitchCluster
     public int OwnerId { get; set; }
     public string? Image { get; set; }
 
+    [JsonIgnore]
     public virtual User Owner { get; set; } = null!;
 
     public virtual ICollection<Pitch> Pitches { get; set; } = new List<Pitch>();
 
+    [JsonIgnore]
     public virtual ICollection<Promotion> Promotions { get; set; } = new List<Promotion>();
 }
