@@ -77,7 +77,8 @@ export default function UserDetail() {
     // 3. Trạng thái Thành công (Hiển thị chi tiết)
 
     // Lấy dữ liệu cần thiết từ object user
-    const team = user.teams.length > 0 ? user.teams[0] : null;
+    const team = user.teams[0] ?? null;
+    console.log("🚀 ~ team:", team);
     const winRate = team ? Math.round((team.wins / team.totalMatches) * 100) : 0;
     const nameInitial = user.fullName
         .split(" ")

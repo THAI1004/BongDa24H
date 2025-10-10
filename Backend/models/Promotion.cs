@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace Backend.Models;
 
@@ -15,5 +16,6 @@ public partial class Promotion
 
     public int? ClusterId { get; set; }
 
+    [JsonIgnore]
     public virtual PitchCluster? Cluster { get; set; }
 }

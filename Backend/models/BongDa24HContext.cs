@@ -44,6 +44,7 @@ public partial class BongDa24HContext : DbContext
     {
         modelBuilder.Entity<Booking>(entity =>
         {
+            modelBuilder.Entity<User>().HasQueryFilter(u => !u.IsDeleted);
             entity.HasKey(e => e.Id).HasName("PK__Bookings__3214EC075AA1CD4F");
 
             entity.HasIndex(e => e.PitchId, "IX_Bookings_PitchId");

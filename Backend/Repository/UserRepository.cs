@@ -55,4 +55,16 @@ public class UserRepository : IUserRepository
     {
         return await _context.Users.FirstOrDefaultAsync(u => u.Email == email);
     }
+    public async Task<User?> DeleteUser(int id)
+    {
+        var user = await _context.Users.FirstOrDefaultAsync(u => u.Id == id);
+        if (user == null)
+        {
+            return null;
+        }
+        user.IsDeleted = true;
+        _context.Users.Update(user);
+        await _context.SaveChangesAsync();
+        return user;
+    }
 }

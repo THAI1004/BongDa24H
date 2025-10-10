@@ -21,7 +21,8 @@ public class TeamRepository : ITeamRepository
     }
     public async Task<List<Team>> GetAllTeamAsyn()
     {
-        return await _context.Teams.ToListAsync();
+        return await _context.Teams.Include(t => t.Manager).ToListAsync();
+
     }
 
     public async Task<Team?> GetTeamByIdAsyn(int Id)

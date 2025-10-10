@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace Backend.Models;
 
@@ -17,6 +18,7 @@ public partial class Team
 
     public int? SkillLevel { get; set; }
     public string? Image { get; set; }
+
 
     public virtual User Manager { get; set; } = null!;
 }

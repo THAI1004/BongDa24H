@@ -1,4 +1,5 @@
 using System.Threading.Tasks;
+using Azure;
 using Backend.Dtos;
 using Backend.Interfaces;
 using Backend.Models;
@@ -249,6 +250,35 @@ public class AuthController : ControllerBase
             {
                 message = "Lấy tài khoản thất bại",
                 details = ex.InnerException?.Message ?? ex.Message
+            });
+        }
+    }
+    [Authorize]
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> DeleteUser([FromRoute] int id)
+    {
+        try
+        {
+            var deletedUser = await _userRepository.DeleteUser(id);
+            if (deletedUser == null)
+            {
+                return NotFound("Không tìm thấy user");
+            }
+            return Ok(new
+            {
+                data = deletedUser,
+                message = "Xóa user thành công.",
+                status = true
+            });
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, new
+            {
+                message = "Xóa tài khoản thất bại",
+                details = ex.InnerException?.Message ?? ex.Message,
+                status = false
+
             });
         }
     }

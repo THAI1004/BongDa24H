@@ -10,5 +10,6 @@ public interface IUserRepository
     Task<CreateUserDto> CreateUserAsyn(CreateUserDto createUserDto);
     Task<User> UpdateUserAsyn(UpdateUserDto updateUserDto);
     Task<User?> CheckLogin(string email);
+    Task<User?> DeleteUser(int id);
 
 }

@@ -25,6 +25,7 @@ import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu, Sid
 import { Link } from "react-router-dom";
 import { json } from "zod";
 import Logo from "./ui/Logo";
+import { UserCircle2 } from "lucide-react";
 
 export const data = {
     user: JSON.parse(localStorage.getItem("user")),
@@ -38,6 +39,11 @@ export const data = {
             title: "Người dùng",
             url: "/admin/user",
             icon: IconUsers,
+        },
+        {
+            title: "Đội bóng",
+            url: "/admin/team",
+            icon: UserCircle2,
         },
     ],
 };
