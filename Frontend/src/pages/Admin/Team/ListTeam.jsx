@@ -63,7 +63,25 @@ export default function ListTeam() {
         };
         fetchTeam();
     }, [BEURL, token]);
-
+    const handleDelete = async (id) => {
+        setLoading(true);
+        try {
+            const response = await axios.delete(`${BEURL}/team/${id}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            });
+            if (response == null) {
+                setLoading(false);
+                setError("không thể xóa đội.");
+            }
+            setTeam((prev) => prev.filter((t) => t.id !== id));
+        } catch (error) {
+            setError(error);
+        } finally {
+            setLoading(false);
+        }
+    };
     // Định nghĩa Header cho bảng
     const teamTableHeaders = [
         { label: "ID", className: "w-[50px]" },
@@ -83,12 +101,19 @@ export default function ListTeam() {
             <TableCell>{team.totalMatches}</TableCell>
             <TableCell className="text-center">{team.wins}</TableCell>
             <TableCell className="text-center gap-1 justify-center flex">
-                <Link to={`/admin/${team.id}`}>
+                <Link to={`/admin/team/${team.id}`}>
                     <Button className={"bg-blue-500 hover:bg-blue-600 hover:text-white"} variant="ghost" size="sm">
                         Chi tiết
                     </Button>
                 </Link>
-                <Button className={"bg-red-500 hover:bg-red-600 hover:text-white"} variant="ghost" size="sm">
+                <Button
+                    handle={() => {
+                        handleDelete(team.id);
+                    }}
+                    className={"bg-red-500 hover:bg-red-600 hover:text-white"}
+                    variant="ghost"
+                    size="sm"
+                >
                     xóa
                 </Button>
             </TableCell>

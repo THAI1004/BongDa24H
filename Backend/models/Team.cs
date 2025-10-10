@@ -18,6 +18,7 @@ public partial class Team
 
     public int? SkillLevel { get; set; }
     public string? Image { get; set; }
+    public bool IsDeleted { get; set; } = false;
 
 
     public virtual User Manager { get; set; } = null!;

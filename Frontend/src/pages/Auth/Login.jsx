@@ -53,7 +53,7 @@ const Login = () => {
     };
 
     const handleGoogleLoginSuccess = async (credentialResponse) => {
-        console.log(credentialResponse);
+        // console.log(credentialResponse);
 
         const code = credentialResponse.code;
 
